@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silver test</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://bootswatch.com/5/litera/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="text-center mb-5 ">
+        <h1>PRODUCTS BASIC APP</h1>
+    </div>
+
+    <!-- Show Products Form-->
+    <div class="containerForm d-flex justify-content-center m-5" >
+        <div class="row  ">
+            <div class="col col-md-6 d-flex justify-content-center">
+                <button id="allProductsBtn" type="submit" class="btn btn-outline-dark">All Products</button>
+            </div>
+
+            <!-- User Input to find product-->
+            <div class="col col-md-6 d-flex justify-content-center">
+                <div id="searchInputDiv">
+                    <select class="form-select form-select-md w-100" aria-label=".form-select-sm"
+                        id="findProductSelector" name="selector" required>
+                        <option value="" disabled selected>Find Product:</option>
+                        <option value="name">Name</option>
+                        <option value="brand">Brand</option>
+                        <option value="category">Category</option>
+                    </select>
+
+                    <div class="input-group mb-3">
+                        <button class="btnFinder btn btn-outline-dark" type="button" id="button-addon1">FIND</button>
+                        <input type="text" class="searchInput form-control" placeholder=""
+                            aria-label="Example text with button addon" aria-describedby="button-addon1">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="message-container"></div>
+
+    <!-- Table of products -->
+    <div class="container mb-5">
+        <div class="row">
+            <div class="col-sm-12 col-md-6 d-flex justify-content-center">
+                <div class="card w-75 mt-5 text-center">
+                    <div class="card-header">
+                        Product Form
+                    </div>
+                    <div class="card-body">
+                        <form id="product-form">
+                            <div>
+                                <input type="number" id="id" class="d-none">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="name" required class="form-control" placeholder="Name"><br><br>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="brand" required class="form-control" placeholder="Brand"><br><br>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" id="stock" required class="form-control"
+                                    placeholder="Stock"><br><br>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" id="price" min="1" required class="form-control"
+                                    placeholder="Price"><br>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-select form-select-md" aria-label=".form-select-sm" id="categoryId"
+                                    name="categoryId" required>
+                                    <option value="" disabled selected hidden>Category:</option>
+                                    <option value="1">Footwear</option>
+                                    <option value="2">Garden</option>
+                                    <option value="3">Kitchen</option>
+                                    <option value="4">Entertainment</option>
+                                </select>
+                            </div>
+                            <div class="row text-center m-4">
+                                <button id="saveBtn" type="submit" class="btn btn-outline-dark">Save Product</button>
+                            </div>
+
+                            <div class="row text-center m-4">
+                                <button id="updateBtn" type="submit" class="btn btn-outline-dark d-none">Update Product</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col col-sm-12 col-md-6">
+                <div class="table-responsive">
+                    <table class="table align-middle caption-top table-light table-striped table-hover table-bordered">
+                        <caption>List of products</caption>
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Brand</th>
+                                <th scope="col">Stock</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Delete</th>
+                                <th scope="col">Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <tr>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
