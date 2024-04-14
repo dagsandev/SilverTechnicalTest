@@ -1,5 +1,9 @@
 package silver.backend.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +25,12 @@ public class ProductController {
     private final ProductMapper productMapper;
     private final IProductService productService;
 
+    @Operation(summary = "Create product",
+            description = "Save new product")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Created", content = @Content(mediaType = "application/json")),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "application/json"))
+    })
     @PostMapping("/")
     public ResponseEntity<Void> save (@RequestBody ProductDTO productDTO){
         if(productDTO == null){
@@ -33,6 +43,13 @@ public class ProductController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @Operation(summary = "Get product by id",
+            description = "Find a product and throw an exception if it was not found.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Operation Ok", content = @Content(mediaType = "application/json")),
+            @ApiResponse(responseCode = "404", description = "Product not found", content = @Content(mediaType = "application/json")),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "application/json"))
+    })
     @GetMapping("/{id}")
     public ResponseEntity<ProductDTO> getById(@PathVariable Long id){
         ProductEntity entity = productService.findById(id);
@@ -46,6 +63,13 @@ public class ProductController {
         return ResponseEntity.ok(dtoResponse);
     }
 
+    @Operation(summary = "Get a list of products",
+            description = "Find a list of products and throw an exception if the list is empty.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Operation Ok", content = @Content(mediaType = "application/json")),
+            @ApiResponse(responseCode = "404", description = "List of products not found", content = @Content(mediaType = "application/json")),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "application/json"))
+    })
     @GetMapping("/")
     public ResponseEntity<List<ProductDTO>> findAll(){
         var products = productService.findAll();
@@ -58,6 +82,13 @@ public class ProductController {
 
     }
 
+    @Operation(summary = "Get product by name",
+            description = "Find a product and throw an exception if it was not found.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Operation Ok", content = @Content(mediaType = "application/json")),
+            @ApiResponse(responseCode = "404", description = "Product not found", content = @Content(mediaType = "application/json")),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "application/json"))
+    })
     @GetMapping("/name")
     public ResponseEntity<List<ProductDTO>> findByName(@RequestParam String name){
         var dto = productService.findByName(name);
@@ -69,6 +100,13 @@ public class ProductController {
         }
     }
 
+    @Operation(summary = "Get product by brand",
+            description = "Find a product and throw an exception if it was not found.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Operation Ok", content = @Content(mediaType = "application/json")),
+            @ApiResponse(responseCode = "404", description = "Product not found", content = @Content(mediaType = "application/json")),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "application/json"))
+    })
     @GetMapping("/brand")
     public ResponseEntity<List<ProductDTO>> findByBrand(@RequestParam String brand){
         var dto = productService.findByBrand(brand);
@@ -80,6 +118,13 @@ public class ProductController {
         }
     }
 
+    @Operation(summary = "Update product",
+            description = "Update a product by locating it using its ID. If the product is not found, an exception is thrown.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Operation Ok", content = @Content(mediaType = "application/json")),
+            @ApiResponse(responseCode = "404", description = "Product not found", content = @Content(mediaType = "application/json")),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "application/json"))
+    })
     @PutMapping("/{id}")
     public ResponseEntity<ProductDTO> updateProduct(@RequestBody ProductDTO productDTO, @PathVariable Long id){
 
@@ -96,6 +141,13 @@ public class ProductController {
         return ResponseEntity.ok(dtoResponse);
     }
 
+    @Operation(summary = "Delete product by ID",
+            description = "Delete a product with the specified ID.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Operation successful, but no content is available to display", content = @Content(mediaType = "application/json")),
+            @ApiResponse(responseCode = "404", description = "Product not found", content = @Content(mediaType = "application/json")),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "application/json"))
+    })
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct (@PathVariable Long id){
 
