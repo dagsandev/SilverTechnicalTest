@@ -20,6 +20,6 @@ All endpoints are relative to the base URL: `https://localhost:8080/api/v1`
 http://localhost:8080/swagger-ui/index.html
 
 ## Endpoints
-![Swagger Doc](swagger-endpoints.png)
+![Swagger Doc](/img/swagger-endpoints.png)
 
 
