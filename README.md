@@ -9,6 +9,7 @@ RESTful basic API to display the consumption of endpoints from the frontend to t
 * Hibernate
 * Lombok
 * MySQL
+* Bootstrap v5.0
 * HTML
 * CSS
 * Vanilla JS
