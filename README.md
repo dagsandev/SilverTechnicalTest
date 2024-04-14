@@ -25,3 +25,8 @@ http://localhost:8080/swagger-ui/index.html
 
 ## Img demo app
 ![Img demo](/img/demo-img1.png)
+
+![Img demo](/img/saved-succesfully.png)
+
+![Img demo](/img/deleted-succesfully.png)
+
